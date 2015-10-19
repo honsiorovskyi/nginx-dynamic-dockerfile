@@ -1,6 +1,6 @@
 FROM nginx:latest
 
-ENV LATEST_RELEASE=0.1-alpha
+ENV LATEST_RELEASE=0.1.1-alpha
 
 ADD https://raw.githubusercontent.com/honsiorovskyi/nginx_config_updater/$LATEST_RELEASE/default.conf.tmpl \
     /opt/nginx_config_updater/default.conf.tmpl
