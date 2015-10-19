@@ -8,6 +8,7 @@ ADD https://github.com/honsiorovskyi/nginx_config_updater/releases/download/$LAT
     /opt/nginx_config_updater/bin/nginx_config_updater
 RUN chmod +x /opt/nginx_config_updater/bin/nginx_config_updater
 
+EXPOSE 3456
 
 CMD /opt/nginx_config_updater/bin/nginx_config_updater \
     --template=/opt/nginx_config_updater/default.conf.tmpl \
