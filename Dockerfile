@@ -1,7 +1,7 @@
 FROM nginx:latest
 
 # setup environment
-ENV LATEST_RELEASE=0.2.0-alpha
+ENV LATEST_RELEASE=0.2.1-alpha
 ENV CONFIG_FILE=
 ENV NGINX_CONFIG_FILE=/etc/nginx/conf.d/default.conf
 ENV EXTRA_ARGS=
@@ -22,5 +22,5 @@ CMD /opt/nginx_config_updater/bin/nginx_config_updater \
     --template=/opt/nginx_config_updater/default.conf.tmpl \
     --out=${NGINX_CONFIG_FILE} \
     --listen=:3456 \
-    ${EXTRA_ARGS}\
+    ${EXTRA_ARGS} \
     & nginx -g "daemon off;"
