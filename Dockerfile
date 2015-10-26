@@ -1,16 +1,22 @@
 FROM nginx:latest
 
-ENV LATEST_RELEASE=0.1.1-alpha
+# setup environment
+ENV LATEST_RELEASE=0.1.4-alpha
+ENV NGINX_CONFIG_FILE=/etc/nginx/conf.d/default.conf
 
+# download binary & default template
 ADD https://raw.githubusercontent.com/honsiorovskyi/nginx_config_updater/$LATEST_RELEASE/default.conf.tmpl \
     /opt/nginx_config_updater/default.conf.tmpl
 ADD https://github.com/honsiorovskyi/nginx_config_updater/releases/download/$LATEST_RELEASE/nginx_config_updater \
     /opt/nginx_config_updater/bin/nginx_config_updater
 RUN chmod +x /opt/nginx_config_updater/bin/nginx_config_updater
 
+# expose port
 EXPOSE 3456
 
+# run updater & nginx
 CMD /opt/nginx_config_updater/bin/nginx_config_updater \
     --template=/opt/nginx_config_updater/default.conf.tmpl \
-    --out=/etc/nginx/conf.d/default.conf \
+    --out=${NGINX_CONFIG_FILE} \
+    --listen=:3456
     & nginx -g "daemon off;"
