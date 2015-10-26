@@ -18,5 +18,5 @@ EXPOSE 3456
 CMD /opt/nginx_config_updater/bin/nginx_config_updater \
     --template=/opt/nginx_config_updater/default.conf.tmpl \
     --out=${NGINX_CONFIG_FILE} \
-    --listen=:3456
+    --listen=:3456 \
     & nginx -g "daemon off;"
