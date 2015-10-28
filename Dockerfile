@@ -17,10 +17,10 @@ RUN chmod +x /opt/nginx_config_updater/bin/nginx_config_updater
 EXPOSE 3456
 
 # run updater & nginx
-CMD /opt/nginx_config_updater/bin/nginx_config_updater \
+CMD ( sleep 0.5 && /opt/nginx_config_updater/bin/nginx_config_updater \
     --config=${CONFIG_FILE} \
     --template=/opt/nginx_config_updater/default.conf.tmpl \
     --out=${NGINX_CONFIG_FILE} \
     --listen=:3456 \
-    ${EXTRA_ARGS} \
-    & (sleep 0.5 && nginx -g "daemon off;")
+    ${EXTRA_ARGS} ) \
+    & nginx -g "daemon off;"
